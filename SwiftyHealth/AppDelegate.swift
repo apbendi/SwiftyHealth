@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  SwiftyHealth
-//
-//  Created by Ben DiFrancesco on 3/17/16.
-//  Copyright © 2016 ScopeLift. All rights reserved.
-//
-
 import UIKit
 import CloudMine
 
@@ -33,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true;
         }
 
+        CMStore.defaultStore()?.user = user
         return true
     }
 

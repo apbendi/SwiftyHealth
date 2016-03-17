@@ -1,13 +1,16 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7A71381D51678244E166489E3033D95D969EF261",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7A71381D51678244E166489E3033D95D969EF261" : 0,
     "BC036C38BA430ED6DFDD04623ECACBE81965D36D" : 0,
     "FF76062907C3E63108AB678A826A70DF528A87E4" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F65337E9-98A4-429E-838F-262071C940E6",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7A71381D51678244E166489E3033D95D969EF261" : "SwiftyHealth\/",
     "BC036C38BA430ED6DFDD04623ECACBE81965D36D" : "CMHealthSDK-iOS\/",
     "FF76062907C3E63108AB678A826A70DF528A87E4" : "cloudmine-ios\/"
   },
@@ -15,6 +18,11 @@
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwiftyHealth.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:apbendi\/SwiftyHealth.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7A71381D51678244E166489E3033D95D969EF261"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:apbendi\/CMHealthSDK-iOS.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
