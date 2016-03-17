@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudMine
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        CMAPICredentials.sharedInstance().appIdentifier = Secrets.AppId
+        CMAPICredentials.sharedInstance().appSecret     = Secrets.AppSecret
+
+        //CMUser.currentUser().logoutWithCallback(nil)
+
+        guard let user = CMUser.currentUser() where user.isLoggedIn else {
+            let newUser = CMUser(email: "ben+scmh1@scopelift.co", andPassword: "testpassword")
+
+            newUser.createAccountAndLoginWithCallback() { (result: CMUserAccountResult, messages: [AnyObject]!) in
+                if CMUserAccountOperationFailed(result) {
+                    print("FAILED TO LOGIN WITH CODE: \(result)")
+                }
+            }
+
+            return true;
+        }
+
         return true
     }
 

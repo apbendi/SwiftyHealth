@@ -14,6 +14,8 @@
 		B447ED871C9B2B0400DC6208 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B447ED851C9B2B0400DC6208 /* LaunchScreen.storyboard */; };
 		B447ED921C9B2B0500DC6208 /* SwiftyHealthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B447ED911C9B2B0500DC6208 /* SwiftyHealthTests.swift */; };
 		B447ED9D1C9B2B0500DC6208 /* SwiftyHealthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B447ED9C1C9B2B0500DC6208 /* SwiftyHealthUITests.swift */; };
+		B447EDAD1C9B470B00DC6208 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B447EDAC1C9B470B00DC6208 /* Secrets.swift */; };
+		BA7E7CF6822F361FB2DCC907 /* Pods_SwiftyHealth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31AA4F16A30EC71279BC312 /* Pods_SwiftyHealth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5643045ACE18CA498DBBB204 /* Pods-SwiftyHealth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyHealth.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyHealth/Pods-SwiftyHealth.release.xcconfig"; sourceTree = "<group>"; };
 		B447ED791C9B2B0400DC6208 /* SwiftyHealth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyHealth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B447ED7C1C9B2B0400DC6208 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B447ED7E1C9B2B0400DC6208 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +50,10 @@
 		B447ED981C9B2B0500DC6208 /* SwiftyHealthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyHealthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B447ED9C1C9B2B0500DC6208 /* SwiftyHealthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyHealthUITests.swift; sourceTree = "<group>"; };
 		B447ED9E1C9B2B0500DC6208 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B447EDAA1C9B2ED200DC6208 /* CloudMine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudMine.framework; path = "Pods/../build/Debug-iphoneos/CloudMine.framework"; sourceTree = "<group>"; };
+		B447EDAC1C9B470B00DC6208 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		BCBEEEA3F821E4B56D8D1C17 /* Pods-SwiftyHealth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyHealth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyHealth/Pods-SwiftyHealth.debug.xcconfig"; sourceTree = "<group>"; };
+		F31AA4F16A30EC71279BC312 /* Pods_SwiftyHealth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyHealth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA7E7CF6822F361FB2DCC907 /* Pods_SwiftyHealth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AB2DBC2C8C200A80CE5489B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BCBEEEA3F821E4B56D8D1C17 /* Pods-SwiftyHealth.debug.xcconfig */,
+				5643045ACE18CA498DBBB204 /* Pods-SwiftyHealth.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B447ED701C9B2B0400DC6208 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +98,8 @@
 				B447ED901C9B2B0500DC6208 /* SwiftyHealthTests */,
 				B447ED9B1C9B2B0500DC6208 /* SwiftyHealthUITests */,
 				B447ED7A1C9B2B0400DC6208 /* Products */,
+				5AB2DBC2C8C200A80CE5489B /* Pods */,
+				DB195B14640E5C67497C76CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +122,7 @@
 				B447ED831C9B2B0400DC6208 /* Assets.xcassets */,
 				B447ED851C9B2B0400DC6208 /* LaunchScreen.storyboard */,
 				B447ED881C9B2B0400DC6208 /* Info.plist */,
+				B447EDAC1C9B470B00DC6208 /* Secrets.swift */,
 			);
 			path = SwiftyHealth;
 			sourceTree = "<group>";
@@ -125,6 +145,15 @@
 			path = SwiftyHealthUITests;
 			sourceTree = "<group>";
 		};
+		DB195B14640E5C67497C76CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B447EDAA1C9B2ED200DC6208 /* CloudMine.framework */,
+				F31AA4F16A30EC71279BC312 /* Pods_SwiftyHealth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +161,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B447EDA11C9B2B0500DC6208 /* Build configuration list for PBXNativeTarget "SwiftyHealth" */;
 			buildPhases = (
+				5A074A35879D058F2DEEDD4F /* Check Pods Manifest.lock */,
 				B447ED751C9B2B0400DC6208 /* Sources */,
 				B447ED761C9B2B0400DC6208 /* Frameworks */,
 				B447ED771C9B2B0400DC6208 /* Resources */,
+				922DD722F6A18E71CC440835 /* Embed Pods Frameworks */,
+				FA84083DCEFDB58AD015ED98 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,12 +283,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5A074A35879D058F2DEEDD4F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		922DD722F6A18E71CC440835 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyHealth/Pods-SwiftyHealth-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA84083DCEFDB58AD015ED98 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyHealth/Pods-SwiftyHealth-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B447ED751C9B2B0400DC6208 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B447ED7F1C9B2B0400DC6208 /* ViewController.swift in Sources */,
+				B447EDAD1C9B470B00DC6208 /* Secrets.swift in Sources */,
 				B447ED7D1C9B2B0400DC6208 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,8 +476,13 @@
 		};
 		B447EDA21C9B2B0500DC6208 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCBEEEA3F821E4B56D8D1C17 /* Pods-SwiftyHealth.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = SwiftyHealth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.scopelift.SwiftyHealth;
@@ -406,8 +492,13 @@
 		};
 		B447EDA31C9B2B0500DC6208 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5643045ACE18CA498DBBB204 /* Pods-SwiftyHealth.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = SwiftyHealth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.scopelift.SwiftyHealth;
@@ -482,6 +573,7 @@
 				B447EDA31C9B2B0500DC6208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B447EDA41C9B2B0500DC6208 /* Build configuration list for PBXNativeTarget "SwiftyHealthTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +582,7 @@
 				B447EDA61C9B2B0500DC6208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B447EDA71C9B2B0500DC6208 /* Build configuration list for PBXNativeTarget "SwiftyHealthUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +591,7 @@
 				B447EDA91C9B2B0500DC6208 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
