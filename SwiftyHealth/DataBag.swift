@@ -2,7 +2,7 @@ import UIKit
 import CloudMine
 
 class DataBag: CMObject {
-    var stringData: String?
+    dynamic var stringData: String?
 
     override init() {
         super.init()
