@@ -30,5 +30,20 @@ class ViewController: UIViewController {
             }
         }
     }
+
+    @IBAction func loadButtonDidPress(sender: UIButton) {
+        CMStore.defaultStore()?.allUserObjectsOfClass(DataBag.self, additionalOptions: nil) { (response: CMObjectFetchResponse!) in
+            print(response?.objects)
+
+            guard let data = response?.objects?.first as? DataBag else {
+                return
+            }
+
+            data.stringData = "Updated After Fetch"
+            data.saveWithUser(CMStore.defaultStore().user) { (response: CMObjectUploadResponse!) in
+                print(response)
+            }
+        }
+    }
 }
 
