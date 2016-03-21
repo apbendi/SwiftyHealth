@@ -6,6 +6,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let _ = CMStore.defaultStore()?.user else {
+            return;
+        }
+
         let data = DataBag()
         data.stringData = "Hello World"
 
