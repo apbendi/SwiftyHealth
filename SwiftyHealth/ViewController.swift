@@ -2,6 +2,12 @@ import UIKit
 import CMHealth
 
 class ViewController: UIViewController, ORKTaskViewControllerDelegate {
+
+
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var surveyCountLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -12,6 +18,30 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
         guard CMHUser.currentUser().isLoggedIn else {
             performSegueWithIdentifier("Onboarding", sender: self)
             return
+        }
+
+        CMHUser.currentUser().addObserver(self, forKeyPath: "userData", options: NSKeyValueObservingOptions.Initial.union(NSKeyValueObservingOptions.New), context: nil)
+
+        fetchSurveys()
+    }
+
+    deinit {
+        CMHUser.currentUser().removeObserver(self, forKeyPath: "userData")
+    }
+
+    // MARK: KVO
+
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        guard let user = object as? CMHUser,
+            let data = user.userData else {
+                return
+        }
+
+        emailLabel.text = data.email
+
+        if let given = data.givenName,
+            let family = data.familyName {
+            nameLabel.text = "\(given) \(family)"
         }
     }
 
@@ -61,7 +91,6 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
 
     private func upload(taskResult result: ORKTaskResult) {
         if result.identifier == "SwiftyHealthTappingTask" {
-            ORKTappingSample
             print(result)
             return
         }
@@ -73,6 +102,25 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
             }
 
             print("Result: \(status)")
+            self.fetchSurveys()
+        }
+    }
+
+    private func fetchSurveys() {
+        ORKTaskResult.cmh_fetchUserResultsForStudyWithIdentifier("SwiftyHealthSurveyTask") { (results, error) in
+            guard let results = results else {
+                if let error = error {
+                    print("Fetching Error \(error.localizedDescription)")
+                } else {
+                    print("Unknown fetching error")
+                }
+
+                return
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                self.surveyCountLabel.text = String(results.count)
+            }
         }
     }
 }

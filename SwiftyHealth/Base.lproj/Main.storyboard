@@ -38,18 +38,53 @@
                                     <action selector="tapButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v4c-KV-wFb"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surveys Completed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA8-tH-4JG">
+                                <rect key="frame" x="223" y="136" width="154" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYL-GL-7aa">
+                                <rect key="frame" x="300" y="173" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kmn-W9-EbE">
+                                <rect key="frame" x="20" y="40" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lch-R7-cc0">
+                                <rect key="frame" x="20" y="48" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bA8-tH-4JG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="45Z-ik-QF1"/>
+                            <constraint firstItem="bA8-tH-4JG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="116" id="8AW-qc-0Ls"/>
                             <constraint firstItem="NOv-6J-rMX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BUg-BD-SEl"/>
+                            <constraint firstItem="PYL-GL-7aa" firstAttribute="centerX" secondItem="bA8-tH-4JG" secondAttribute="centerX" id="CPf-5n-r5i"/>
+                            <constraint firstItem="Kmn-W9-EbE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="JhD-CY-SMe"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fem-DG-tV0" secondAttribute="bottom" constant="20" id="PQY-ex-IoY"/>
+                            <constraint firstItem="lch-R7-cc0" firstAttribute="top" secondItem="Kmn-W9-EbE" secondAttribute="bottom" constant="8" id="PZw-u6-A7V"/>
                             <constraint firstItem="u72-XW-8DC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QrB-d5-awS"/>
+                            <constraint firstItem="Kmn-W9-EbE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="WSo-wT-N8P"/>
                             <constraint firstItem="Fem-DG-tV0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xd9-7i-bxr"/>
+                            <constraint firstItem="lch-R7-cc0" firstAttribute="leading" secondItem="Kmn-W9-EbE" secondAttribute="leading" id="XzI-Ja-Ye8"/>
                             <constraint firstItem="NOv-6J-rMX" firstAttribute="top" secondItem="u72-XW-8DC" secondAttribute="bottom" constant="16" id="iOb-Ut-w5A"/>
+                            <constraint firstItem="PYL-GL-7aa" firstAttribute="top" secondItem="bA8-tH-4JG" secondAttribute="bottom" constant="16" id="kpC-pV-ubz"/>
                             <constraint firstItem="u72-XW-8DC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="r3Y-Cd-jdq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailLabel" destination="lch-R7-cc0" id="uDD-wj-nBb"/>
+                        <outlet property="nameLabel" destination="Kmn-W9-EbE" id="gKL-vt-0hb"/>
+                        <outlet property="surveyCountLabel" destination="PYL-GL-7aa" id="XDS-Dp-dYJ"/>
                         <segue destination="3Rb-WD-WkV" kind="presentation" identifier="Onboarding" id="fRp-PS-6pU"/>
                     </connections>
                 </viewController>
