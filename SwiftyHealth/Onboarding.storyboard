@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gzK-JO-rRa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gzK-JO-rRa">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Onboarding View Controller-->
@@ -24,11 +24,20 @@
                                     <action selector="consentButtonDidPress:" destination="gzK-JO-rRa" eventType="touchUpInside" id="cSp-Ic-xXf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irk-Jb-sme">
+                                <rect key="frame" x="277" y="550" width="47" height="30"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signinButtonDidPress:" destination="gzK-JO-rRa" eventType="touchUpInside" id="ZsM-HU-A9M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Ncg-jJ-agO" firstAttribute="top" secondItem="irk-Jb-sme" secondAttribute="bottom" constant="20" id="RPN-Wo-g1c"/>
                             <constraint firstItem="k56-dq-Nvc" firstAttribute="centerX" secondItem="giR-8h-di2" secondAttribute="centerX" id="Xmt-hY-pM7"/>
                             <constraint firstItem="k56-dq-Nvc" firstAttribute="centerY" secondItem="giR-8h-di2" secondAttribute="centerY" id="ms6-Bn-zec"/>
+                            <constraint firstItem="irk-Jb-sme" firstAttribute="centerX" secondItem="giR-8h-di2" secondAttribute="centerX" id="vW6-AZ-pj1"/>
                         </constraints>
                     </view>
                 </viewController>

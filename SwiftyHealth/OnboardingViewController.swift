@@ -9,11 +9,20 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
         super.viewDidLoad()
     }
 
+    // MARK: Target-Action
+
     @IBAction func consentButtonDidPress(sender: UIButton) {
         let consentVC = ORKTaskViewController(task: ConsentBuilder.consentTask(), taskRunUUID: nil)
         consentVC.delegate = self
 
         presentViewController(consentVC, animated:true, completion:nil)
+    }
+
+    @IBAction func signinButtonDidPress(sender: UIButton) {
+        let signinVC = CMHAuthViewController.loginViewController()
+        signinVC.delegate = self
+
+        presentViewController(signinVC, animated: true, completion: nil)
     }
 
     // MARK: ORKTaskViewControllerDelegate
@@ -35,6 +44,7 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
     }
 
     // MARK: CMHAuthViewDelegate
+    
     func authViewCancelledType(authType: CMHAuthType) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -81,7 +91,16 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
         }
     }
 
-    private func login(email email: NSString, password: NSString) {
-        print("Login \(email) \(password)")
+    private func login(email email: String, password: String) {
+        CMHUser.currentUser().loginWithEmail(email, password: password) { error in
+            if let error = error {
+                print("Error signing in: \(error.localizedDescription)")
+                return
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
     }
 }

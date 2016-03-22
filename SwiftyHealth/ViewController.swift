@@ -10,8 +10,23 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
 
         guard CMHUser.currentUser().isLoggedIn else {
-            self.performSegueWithIdentifier("Onboarding", sender: self)
+            performSegueWithIdentifier("Onboarding", sender: self)
             return
+        }
+    }
+
+    // MARK: Target-Action
+    
+    @IBAction func logoutButtonDidPress(sender: UIButton) {
+        CMHUser.currentUser().logoutWithCompletion { error in
+            if let error = error {
+                print("Error Logging Out: \(error.localizedDescription)")
+                return
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                self.performSegueWithIdentifier("Onboarding", sender: self)
+            }
         }
     }
 }
