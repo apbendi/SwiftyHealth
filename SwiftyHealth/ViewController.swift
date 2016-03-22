@@ -10,8 +10,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
 
         guard CMHUser.currentUser().isLoggedIn else {
-            let consentVC = ORKTaskViewController(task: ConsentBuilder.consentTask(), taskRunUUID: nil)
-            self.presentViewController(consentVC, animated: true, completion: nil)
+            self.performSegueWithIdentifier("Onboarding", sender: self)
             return
         }
     }

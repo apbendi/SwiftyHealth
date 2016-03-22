@@ -17,6 +17,8 @@
 		B447EDAD1C9B470B00DC6208 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B447EDAC1C9B470B00DC6208 /* Secrets.swift */; };
 		B447EDAF1C9B4B2D00DC6208 /* DataBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B447EDAE1C9B4B2D00DC6208 /* DataBag.swift */; };
 		B447EDB11CA075B200DC6208 /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B447EDB01CA075B100DC6208 /* Consent.swift */; };
+		B469C0FB1CA1A264009505FC /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B469C0FA1CA1A264009505FC /* Onboarding.storyboard */; };
+		B469C0FD1CA1A29E009505FC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B469C0FC1CA1A29E009505FC /* OnboardingViewController.swift */; };
 		BA7E7CF6822F361FB2DCC907 /* Pods_SwiftyHealth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31AA4F16A30EC71279BC312 /* Pods_SwiftyHealth.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,8 @@
 		B447EDAC1C9B470B00DC6208 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		B447EDAE1C9B4B2D00DC6208 /* DataBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBag.swift; sourceTree = "<group>"; };
 		B447EDB01CA075B100DC6208 /* Consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
+		B469C0FA1CA1A264009505FC /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		B469C0FC1CA1A29E009505FC /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		BCBEEEA3F821E4B56D8D1C17 /* Pods-SwiftyHealth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyHealth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyHealth/Pods-SwiftyHealth.debug.xcconfig"; sourceTree = "<group>"; };
 		F31AA4F16A30EC71279BC312 /* Pods_SwiftyHealth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyHealth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,9 +126,11 @@
 			children = (
 				B447ED7C1C9B2B0400DC6208 /* AppDelegate.swift */,
 				B447ED7E1C9B2B0400DC6208 /* ViewController.swift */,
+				B469C0FC1CA1A29E009505FC /* OnboardingViewController.swift */,
 				B447EDB01CA075B100DC6208 /* Consent.swift */,
 				B447EDAE1C9B4B2D00DC6208 /* DataBag.swift */,
 				B447ED801C9B2B0400DC6208 /* Main.storyboard */,
+				B469C0FA1CA1A264009505FC /* Onboarding.storyboard */,
 				B447ED831C9B2B0400DC6208 /* Assets.xcassets */,
 				B447ED851C9B2B0400DC6208 /* LaunchScreen.storyboard */,
 				B447ED881C9B2B0400DC6208 /* Info.plist */,
@@ -270,6 +276,7 @@
 				B447ED871C9B2B0400DC6208 /* LaunchScreen.storyboard in Resources */,
 				B447ED841C9B2B0400DC6208 /* Assets.xcassets in Resources */,
 				B447ED821C9B2B0400DC6208 /* Main.storyboard in Resources */,
+				B469C0FB1CA1A264009505FC /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B447EDAF1C9B4B2D00DC6208 /* DataBag.swift in Sources */,
+				B469C0FD1CA1A29E009505FC /* OnboardingViewController.swift in Sources */,
 				B447ED7F1C9B2B0400DC6208 /* ViewController.swift in Sources */,
 				B447EDAD1C9B470B00DC6208 /* Secrets.swift in Sources */,
 				B447EDB11CA075B200DC6208 /* Consent.swift in Sources */,
