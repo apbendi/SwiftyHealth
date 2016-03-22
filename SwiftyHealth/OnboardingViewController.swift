@@ -3,6 +3,8 @@ import CMHealth
 
 class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate, CMHAuthViewDelegate {
 
+    private var consentResult: ORKTaskResult? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -26,7 +28,7 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
 
         switch reason {
         case .Completed:
-            handleConsentCompletion()
+            handleConsentCompletion(taskViewController.result)
         default:
             print("Consent Dismissed")
         }
@@ -50,15 +52,33 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
 
     // MARK: Private helpers
 
-    private func handleConsentCompletion() {
+    private func handleConsentCompletion(result: ORKTaskResult) {
+        consentResult = result
+
         let signupVC = CMHAuthViewController.signupViewController()
         signupVC.delegate = self
 
         presentViewController(signupVC, animated: true, completion: nil)
     }
 
-    private func signup(email email: NSString, password: NSString) {
-        print("Signup \(email) \(password)")
+    private func signup(email email: String, password: String) {
+        CMHUser.currentUser().signUpWithEmail(email, password: password) { signupError in
+            if let signupError = signupError {
+                print("Error during signup: \(signupError.localizedDescription)")
+                return
+            }
+
+            CMHUser.currentUser().uploadUserConsent(self.consentResult){ (consent, uploadError) in
+                if let uploadError = uploadError {
+                    print("Error uploading consent: \(uploadError.localizedDescription)")
+                    return
+                }
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+        }
     }
 
     private func login(email email: NSString, password: NSString) {
