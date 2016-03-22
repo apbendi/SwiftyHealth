@@ -12,7 +12,7 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
     // MARK: Target-Action
 
     @IBAction func consentButtonDidPress(sender: UIButton) {
-        let consentVC = ORKTaskViewController(task: ConsentBuilder.consentTask(), taskRunUUID: nil)
+        let consentVC = ORKTaskViewController(task: Tasks.consent, taskRunUUID: nil)
         consentVC.delegate = self
 
         presentViewController(consentVC, animated:true, completion:nil)

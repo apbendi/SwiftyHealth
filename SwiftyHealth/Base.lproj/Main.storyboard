@@ -24,11 +24,20 @@
                                     <action selector="logoutButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DkT-wy-8L0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u72-XW-8DC">
+                                <rect key="frame" x="252" y="285" width="96" height="30"/>
+                                <state key="normal" title="Take a Survey"/>
+                                <connections>
+                                    <action selector="surveyButtonDidPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2id-f8-Bd9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fem-DG-tV0" secondAttribute="bottom" constant="20" id="PQY-ex-IoY"/>
+                            <constraint firstItem="u72-XW-8DC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QrB-d5-awS"/>
                             <constraint firstItem="Fem-DG-tV0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xd9-7i-bxr"/>
+                            <constraint firstItem="u72-XW-8DC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="r3Y-Cd-jdq"/>
                         </constraints>
                     </view>
                     <connections>

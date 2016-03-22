@@ -1,7 +1,17 @@
 import Foundation
 import CMHealth
 
-struct ConsentBuilder {
+struct Tasks {
+    static var consent: ORKOrderedTask {
+        return ConsentBuilder.consentTask()
+    }
+
+    static var survey: ORKOrderedTask {
+        return SurveyBuilder.task
+    }
+}
+
+private struct ConsentBuilder {
     static func consentTask() -> ORKOrderedTask {
         let task = ORKOrderedTask(identifier: "SwiftyConsentTask", steps: self.steps())
 
@@ -66,5 +76,33 @@ struct ConsentBuilder {
         section.summary = "It won't take any time"
 
         return section
+    }
+}
+
+private struct SurveyBuilder {
+    static var task: ORKOrderedTask {
+        let task = ORKOrderedTask(identifier: "SwiftyHealthSurveyTask", steps: steps)
+
+        return task
+    }
+
+    static var steps: [ORKStep] {
+        return [dobQuestion, awesomeQuestion, typeQuestion, selectQuestion]
+    }
+
+    static var dobQuestion: ORKQuestionStep {
+        return ORKQuestionStep(identifier: "SwiftyHealthBirthQuestion", title: "When were you born?", answer: ORKAnswerFormat.dateAnswerFormat())
+    }
+
+    static var awesomeQuestion: ORKQuestionStep {
+        return ORKQuestionStep(identifier: "SwiftyHealthAwesomeQuestion", title: "How awesome is this survey?", text: "Scale of 1-10", answer: ORKScaleAnswerFormat(maximumValue: 10, minimumValue: 1, defaultValue: 10, step: 1))
+    }
+
+    static var typeQuestion: ORKQuestionStep {
+        return ORKQuestionStep(identifier: "SwiftyHealthTypeQuestion", title: "Type some random text!", text: nil, answer: ORKTextAnswerFormat(maximumLength: 1024))
+    }
+
+    static var selectQuestion: ORKQuestionStep {
+        return ORKQuestionStep(identifier: "SwiftyHealthSelectQuestion", title: "Which best describes this survey?", answer: ORKTextChoiceAnswerFormat(style: .SingleChoice, textChoices: [ORKTextChoice(text: "Amazing", value: "Amazing"), ORKTextChoice(text:"Unbelievable", value:"Unbelievable"),  ORKTextChoice(text:"Incredible", value:"Incredible"),  ORKTextChoice(text:"Awe Inspiring", value:"Awe Inspiring")]))
     }
 }

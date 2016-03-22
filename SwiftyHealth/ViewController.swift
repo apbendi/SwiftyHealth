@@ -16,6 +16,13 @@ class ViewController: UIViewController {
     }
 
     // MARK: Target-Action
+
+
+    @IBAction func surveyButtonDidPress(sender: UIButton) {
+        let surveyVC = ORKTaskViewController(task: Tasks.survey, taskRunUUID: nil)
+
+        presentViewController(surveyVC, animated: true, completion: nil)
+    }
     
     @IBAction func logoutButtonDidPress(sender: UIButton) {
         CMHUser.currentUser().logoutWithCompletion { error in
