@@ -1,7 +1,7 @@
 import UIKit
 import CMHealth
 
-class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate {
+class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate, CMHAuthViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +32,36 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate 
         }
     }
 
+    // MARK: CMHAuthViewDelegate
+    func authViewCancelledType(authType: CMHAuthType) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func authViewOfType(authType: CMHAuthType, didSubmitWithEmail email: String, andPassword password: String) {
+        dismissViewControllerAnimated(true, completion: nil)
+
+        switch authType {
+        case .Signup:
+            signup(email: email, password: password)
+        case .Login:
+            login(email: email, password: password)
+        }
+    }
+
     // MARK: Private helpers
 
     private func handleConsentCompletion() {
-        print("Handle Consent")
+        let signupVC = CMHAuthViewController.signupViewController()
+        signupVC.delegate = self
+
+        presentViewController(signupVC, animated: true, completion: nil)
+    }
+
+    private func signup(email email: NSString, password: NSString) {
+        print("Signup \(email) \(password)")
+    }
+
+    private func login(email email: NSString, password: NSString) {
+        print("Login \(email) \(password)")
     }
 }
