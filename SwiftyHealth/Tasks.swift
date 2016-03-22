@@ -9,6 +9,10 @@ struct Tasks {
     static var survey: ORKOrderedTask {
         return SurveyBuilder.task
     }
+
+    static var tap: ORKOrderedTask {
+        return ORKOrderedTask.twoFingerTappingIntervalTaskWithIdentifier("SwiftyHealthTappingTask", intendedUseDescription: "Test Your Taps", duration: 5.0, options: ORKPredefinedTaskOption.None)
+    }
 }
 
 private struct ConsentBuilder {
@@ -87,7 +91,7 @@ private struct SurveyBuilder {
     }
 
     static var steps: [ORKStep] {
-        return [dobQuestion, awesomeQuestion, typeQuestion, selectQuestion]
+        return [awesomeQuestion, typeQuestion, selectQuestion]
     }
 
     static var dobQuestion: ORKQuestionStep {
