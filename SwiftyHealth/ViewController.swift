@@ -6,6 +6,7 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
     // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var signatureImage: UIImageView!
     @IBOutlet weak var surveyCountLabel: UILabel!
 
     override func viewDidLoad() {
@@ -23,6 +24,10 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
         }
 
         CMHUser.currentUser().addObserver(self, forKeyPath: "userData", options: NSKeyValueObservingOptions.Initial.union(NSKeyValueObservingOptions.New), context: nil)
+
+        if nil == signatureImage.image {
+            fetchSignature()
+        }
 
         fetchSurveys()
     }
@@ -65,8 +70,8 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
 
     @IBAction func logoutButtonDidPress(sender: UIButton) {
         CMHUser.currentUser().logoutWithCompletion { error in
-            if let error = error {
-                print("Error Logging Out: \(error.localizedDescription)")
+            guard nil == error else {
+                print( "logging out".message(forError: error) )
                 return
             }
 
@@ -98,8 +103,8 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
         }
 
         result.cmh_saveWithCompletion { (status, error) in
-            if let error = error {
-                print("Error saving results: \(error.localizedDescription)")
+            guard nil == error else {
+                print( "saving results".message(forError: error) )
                 return
             }
 
@@ -111,18 +116,33 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
     private func fetchSurveys() {
         ORKTaskResult.cmh_fetchUserResultsForStudyWithIdentifier("SwiftyHealthSurveyTask") { (results, error) in
             guard let results = results else {
-                if let error = error {
-                    print("Fetching Error \(error.localizedDescription)")
-                } else {
-                    print("Unknown fetching error")
-                }
-
+                print( "fetching surveys".message(forError: error) )
                 return
             }
 
             dispatch_async(dispatch_get_main_queue()) {
                 self.surveyCountLabel.text = String(results.count)
             }
+        }
+    }
+
+    private func fetchSignature() {
+        CMHUser.currentUser().fetchUserConsentForStudyWithCompletion { (consent, error) in
+            guard let consent = consent else {
+                print( "fetching consent".message(forError: error) )
+                return
+            }
+
+            consent.fetchSignatureImageWithCompletion({ (image, error) in
+                guard let image = image else {
+                    print( "fetching signature".message(forError: error) )
+                    return
+                }
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.signatureImage.image = image
+                }
+            })
         }
     }
 }

@@ -32,3 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension String {
+    func message(forError error: NSError?) -> String {
+        if let error = error {
+            return "Error \(self): \(error.localizedDescription)"
+        } else {
+            return "Unknown error \(self)"
+        }
+    }
+}
+

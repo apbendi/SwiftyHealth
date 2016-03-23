@@ -39,13 +39,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surveys Completed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA8-tH-4JG">
-                                <rect key="frame" x="223" y="136" width="154" height="21"/>
+                                <rect key="frame" x="223" y="152" width="154" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYL-GL-7aa">
-                                <rect key="frame" x="300" y="173" width="0.0" height="0.0"/>
+                                <rect key="frame" x="300" y="189" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -62,11 +62,19 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="816-M9-0rG">
+                                <rect key="frame" x="180" y="60" width="240" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EkL-3q-Npu"/>
+                                    <constraint firstAttribute="width" constant="240" id="YRE-fB-Y96"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bA8-tH-4JG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="45Z-ik-QF1"/>
-                            <constraint firstItem="bA8-tH-4JG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="116" id="8AW-qc-0Ls"/>
+                            <constraint firstItem="bA8-tH-4JG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="132" id="8AW-qc-0Ls"/>
+                            <constraint firstItem="816-M9-0rG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Xi-Ck-cAe"/>
                             <constraint firstItem="NOv-6J-rMX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BUg-BD-SEl"/>
                             <constraint firstItem="PYL-GL-7aa" firstAttribute="centerX" secondItem="bA8-tH-4JG" secondAttribute="centerX" id="CPf-5n-r5i"/>
                             <constraint firstItem="Kmn-W9-EbE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="JhD-CY-SMe"/>
@@ -74,6 +82,7 @@
                             <constraint firstItem="lch-R7-cc0" firstAttribute="top" secondItem="Kmn-W9-EbE" secondAttribute="bottom" constant="8" id="PZw-u6-A7V"/>
                             <constraint firstItem="u72-XW-8DC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QrB-d5-awS"/>
                             <constraint firstItem="Kmn-W9-EbE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="WSo-wT-N8P"/>
+                            <constraint firstItem="816-M9-0rG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="Wwr-Mk-IvT"/>
                             <constraint firstItem="Fem-DG-tV0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xd9-7i-bxr"/>
                             <constraint firstItem="lch-R7-cc0" firstAttribute="leading" secondItem="Kmn-W9-EbE" secondAttribute="leading" id="XzI-Ja-Ye8"/>
                             <constraint firstItem="NOv-6J-rMX" firstAttribute="top" secondItem="u72-XW-8DC" secondAttribute="bottom" constant="16" id="iOb-Ut-w5A"/>
@@ -84,6 +93,7 @@
                     <connections>
                         <outlet property="emailLabel" destination="lch-R7-cc0" id="uDD-wj-nBb"/>
                         <outlet property="nameLabel" destination="Kmn-W9-EbE" id="gKL-vt-0hb"/>
+                        <outlet property="signatureImage" destination="816-M9-0rG" id="f7e-LX-DVx"/>
                         <outlet property="surveyCountLabel" destination="PYL-GL-7aa" id="XDS-Dp-dYJ"/>
                         <segue destination="3Rb-WD-WkV" kind="presentation" identifier="Onboarding" id="fRp-PS-6pU"/>
                     </connections>

@@ -35,8 +35,8 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
     // MARK: ORKTaskViewControllerDelegate
 
     func taskViewController(taskViewController: ORKTaskViewController, didFinishWithReason reason: ORKTaskViewControllerFinishReason, error: NSError?) {
-        if let error = error {
-            print("Consent Error: \(error.localizedDescription)")
+        guard nil == error else {
+            print( "during consent".message(forError: error) )
             return
         }
 
@@ -80,14 +80,14 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
 
     private func signup(email email: String, password: String) {
         CMHUser.currentUser().signUpWithEmail(email, password: password) { signupError in
-            if let signupError = signupError {
-                print("Error during signup: \(signupError.localizedDescription)")
+            guard nil == signupError else {
+                print( "signing up".message(forError: signupError) )
                 return
             }
 
             CMHUser.currentUser().uploadUserConsent(self.consentResult){ (consent, uploadError) in
-                if let uploadError = uploadError {
-                    print("Error uploading consent: \(uploadError.localizedDescription)")
+                guard nil == uploadError else {
+                    print( "uploading consent".message(forError: uploadError) )
                     return
                 }
 
@@ -104,18 +104,13 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
 
                 consentDoc.makePDFWithCompletionHandler{ (pdfData, error) in
                     guard let pdfData = pdfData else {
-                        var message = "Unknown error creating PDF"
-                        if let error = error {
-                            message = "Error creating PDF: \(error.localizedDescription)"
-                        }
-
-                        print(message)
+                        print( "creating conent PDF".message(forError: error) )
                         return
                     }
 
                     consent?.uploadConsentPDF(pdfData) { error in
                         if let error = error {
-                            print("Error uploading pdf: \(error.localizedDescription)")
+                            print( "uploading consent PDF".message(forError: error) )
                         }
                     }
                 }
