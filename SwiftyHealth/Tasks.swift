@@ -2,8 +2,13 @@ import Foundation
 import CMHealth
 
 struct Tasks {
+    static var consentAndDoc: (ORKOrderedTask, ORKConsentDocument) {
+        return ConsentBuilder.consentTaskAndDoc()
+    }
+
     static var consent: ORKOrderedTask {
-        return ConsentBuilder.consentTask()
+        let (consent, _) = ConsentBuilder.consentTaskAndDoc()
+        return consent
     }
 
     static var survey: ORKOrderedTask {
@@ -16,19 +21,20 @@ struct Tasks {
 }
 
 private struct ConsentBuilder {
-    static func consentTask() -> ORKOrderedTask {
-        let task = ORKOrderedTask(identifier: "SwiftyConsentTask", steps: self.steps())
+    static func consentTaskAndDoc() -> (ORKOrderedTask, ORKConsentDocument) {
+        let (steps, doc) = self.stepsIncludingDoc()
+        let task = ORKOrderedTask(identifier: "SwiftyConsentTask", steps: steps)
 
-        return task
+        return (task, doc)
     }
 
-    private static func steps() -> [ORKStep] {
+    private static func stepsIncludingDoc() -> ([ORKStep], ORKConsentDocument) {
         let doc = self.consentDoc()
         doc.title = NSLocalizedString("Swifty Health Consent", comment: "")
         doc.signaturePageTitle = NSLocalizedString("Swifty Consent", comment: "")
 
 
-        return [self.visualStep(doc), self.sharingStep(), self.reviewStep(doc)]
+        return ([self.visualStep(doc), self.sharingStep(), self.reviewStep(doc)], doc)
     }
 
     private static func visualStep(doc: ORKConsentDocument) -> ORKVisualConsentStep {
@@ -60,7 +66,7 @@ private struct ConsentBuilder {
     }
 
     private static func signature() -> ORKConsentSignature {
-        return ORKConsentSignature(forPersonWithTitle: nil, dateFormatString: nil, identifier: "SwiftyConsentSignature")
+        return ORKConsentSignature(forPersonWithTitle: "Participant", dateFormatString: nil, identifier: "SwiftyConsentSignature")
     }
 
     private static func sections() -> [ORKConsentSection] {
@@ -108,5 +114,19 @@ private struct SurveyBuilder {
 
     static var selectQuestion: ORKQuestionStep {
         return ORKQuestionStep(identifier: "SwiftyHealthSelectQuestion", title: "Which best describes this survey?", answer: ORKTextChoiceAnswerFormat(style: .SingleChoice, textChoices: [ORKTextChoice(text: "Amazing", value: "Amazing"), ORKTextChoice(text:"Unbelievable", value:"Unbelievable"),  ORKTextChoice(text:"Incredible", value:"Incredible"),  ORKTextChoice(text:"Awe Inspiring", value:"Awe Inspiring")]))
+    }
+}
+
+extension ORKCollectionResult {
+    func signatureResult() -> ORKConsentSignatureResult? {
+        guard let results = results where results.count > 0 else {
+            return nil
+        }
+
+        if let signature = results.filter({ nil != $0 as? ORKConsentSignatureResult }).first as? ORKConsentSignatureResult {
+            return signature
+        }
+
+        return results.flatMap { $0 as? ORKCollectionResult }.flatMap { $0.signatureResult() }.first
     }
 }

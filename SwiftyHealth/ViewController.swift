@@ -3,7 +3,7 @@ import CMHealth
 
 class ViewController: UIViewController, ORKTaskViewControllerDelegate {
 
-
+    // MARK: Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var surveyCountLabel: UILabel!
@@ -11,6 +11,8 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+    // MARK: Lifecycle
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

@@ -3,7 +3,11 @@ import CMHealth
 
 class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate, CMHAuthViewDelegate {
 
+    // MARK: Properties
     private var consentResult: ORKTaskResult? = nil
+    private var consentDoc: ORKConsentDocument? = nil
+
+    // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,7 +16,10 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
     // MARK: Target-Action
 
     @IBAction func consentButtonDidPress(sender: UIButton) {
-        let consentVC = ORKTaskViewController(task: Tasks.consent, taskRunUUID: nil)
+        let (task, doc) = Tasks.consentAndDoc
+        consentDoc = doc
+
+        let consentVC = ORKTaskViewController(task: task, taskRunUUID: nil)
         consentVC.delegate = self
 
         presentViewController(consentVC, animated:true, completion:nil)
@@ -86,6 +93,31 @@ class OnboardingViewController: UIViewController, ORKTaskViewControllerDelegate,
 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                }
+
+                guard let consentDoc = self.consentDoc,
+                    signatureResult = self.consentResult?.signatureResult() else {
+                    return
+                }
+
+                signatureResult.applyToDocument(consentDoc)
+
+                consentDoc.makePDFWithCompletionHandler{ (pdfData, error) in
+                    guard let pdfData = pdfData else {
+                        var message = "Unknown error creating PDF"
+                        if let error = error {
+                            message = "Error creating PDF: \(error.localizedDescription)"
+                        }
+
+                        print(message)
+                        return
+                    }
+
+                    consent?.uploadConsentPDF(pdfData) { error in
+                        if let error = error {
+                            print("Error uploading pdf: \(error.localizedDescription)")
+                        }
+                    }
                 }
             }
         }
