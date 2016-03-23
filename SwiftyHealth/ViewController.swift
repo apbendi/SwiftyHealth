@@ -9,6 +9,10 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
     @IBOutlet weak var signatureImage: UIImageView!
     @IBOutlet weak var surveyCountLabel: UILabel!
 
+    // MARK: Properties
+    private var consent: CMHConsent? = nil
+    private var consentPDF: NSData? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -36,6 +40,16 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
         CMHUser.currentUser().removeObserver(self, forKeyPath: "userData")
     }
 
+    // MARK: Navigation
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+
+        if let pdfVC = segue.destinationViewController as? ShowPDFViewController {
+            pdfVC.pdfData = consentPDF
+        }
+    }
+
     // MARK: KVO
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -53,6 +67,10 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
     }
 
     // MARK: Target-Action
+
+    @IBAction func consentDocumentButtonDidPress(sender: UIButton) {
+        fetchAndShowPDF()
+    }
 
     @IBAction func surveyButtonDidPress(sender: UIButton) {
         let surveyVC = ORKTaskViewController(task: Tasks.survey, taskRunUUID: nil)
@@ -126,23 +144,65 @@ class ViewController: UIViewController, ORKTaskViewControllerDelegate {
         }
     }
 
-    private func fetchSignature() {
+    private func fetchConsent(withCompletion completion:(()->())) {
         CMHUser.currentUser().fetchUserConsentForStudyWithCompletion { (consent, error) in
             guard let consent = consent else {
                 print( "fetching consent".message(forError: error) )
                 return
             }
 
-            consent.fetchSignatureImageWithCompletion({ (image, error) in
-                guard let image = image else {
-                    print( "fetching signature".message(forError: error) )
-                    return
-                }
+            self.consent = consent
+            completion()
+        }
 
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.signatureImage.image = image
-                }
-            })
+    }
+
+    private func fetchSignature() {
+        guard let consent = consent else {
+            fetchConsent {
+                self.fetchSignature()
+            }
+
+            return
+        }
+
+        consent.fetchSignatureImageWithCompletion({ (image, error) in
+            guard let image = image else {
+                print( "fetching signature".message(forError: error) )
+                return
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                self.signatureImage.image = image
+            }
+        })
+    }
+
+    private func fetchAndShowPDF() {
+        if let _ = consentPDF {
+            performSegueWithIdentifier("ShowPDF", sender: self)
+            return
+        }
+
+        guard let consent = consent else {
+            fetchConsent {
+                self.fetchAndShowPDF()
+            }
+
+            return
+        }
+
+        consent.fetchConsentPDFWithCompletion { (pdfData, error) in
+            guard let pdfData = pdfData else {
+                print( "fetching PDF".message(forError: error) )
+                return
+            }
+
+            self.consentPDF = pdfData
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.performSegueWithIdentifier("ShowPDF", sender: self)
+            }
         }
     }
 }
